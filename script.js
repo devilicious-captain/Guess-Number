@@ -22,7 +22,6 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').style.width = '30rem';
     dispnum(x);
     if (x > highscore) {
-      document.querySelector('body').style.backgroundColor = 'black';
       highscore = score;
       document.querySelector('.highscore').textContent = highscore;
     }
