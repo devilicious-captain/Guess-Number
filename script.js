@@ -9,9 +9,8 @@ const displaymsg = function (msg) {
 const dispnum = function (num) {
   document.querySelector('.number').textContent = num;
 };
-document.querySelector('.check').addEventListener('click', function () {
+function checkcond() {
   const x = Number(document.querySelector('.guess').value);
-  console.log(x);
   if (!x) {
     displaymsg('!x! No number !x!');
     document.querySelector('body').style.backgroundColor =
@@ -22,6 +21,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.number').style.width = '30rem';
     dispnum(x);
     if (x > highscore) {
+      document.querySelector('body').style.backgroundColor = 'black';
       highscore = score;
       document.querySelector('.highscore').textContent = highscore;
     }
@@ -30,6 +30,7 @@ document.querySelector('.check').addEventListener('click', function () {
       displaymsg(
         x > secret ? 'Number is HIGH. Go lower⏬' : 'Number is low. Go higher⏫'
       );
+      dispnum(x > secret ? 'Go ⏬' : 'Go ⏫');
       document.querySelector('body').style.backgroundColor = 'black';
       score--;
       document.querySelector('.score').textContent = score;
@@ -39,6 +40,12 @@ document.querySelector('.check').addEventListener('click', function () {
       document.querySelector('body').style.backgroundColor = 'crimson';
       dispnum('🚫');
     }
+  }
+}
+document.querySelector('.check').addEventListener('click', checkcond);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Enter') {
+    checkcond();
   }
 });
 document.querySelector('.again').addEventListener('click', function () {
